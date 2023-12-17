@@ -25,36 +25,36 @@ def sokoban(puzzle):
             pos = (i,j)
 
             if c == '@' or c == '+':
-                state.append(expr('S('+ str(pos) +')'))
+                state.append(expr('S(I'+ str(i) + ', J' + str(j) + ')'))
                 # state['p'] = pos
                 if c == '+':
                     # state['goals'].append(pos)
-                    state.append(expr('Goal(' + str(pos) + ')'))
+                    state.append(expr('Goal(I'+ str(i) + ', J' + str(j) + ')'))
                     goals.append(pos)
 
             elif c == '$' or c == '*':
                 # state['boxes'].append(pos)
-                state.append(expr('Box(' + str(pos) + ')'))
+                state.append(expr('Box(I'+ str(i) + ', J' + str(j) + ')'))
                 boxCount += 1
                 if c == '*':
                     # state['goals'].append(pos)
-                    state.append(expr('Goal(' + str(pos) + ')'))
+                    state.append(expr('Goal(I'+ str(i) + ', J' + str(j) + ')'))
                     goals.append(pos)
 
             elif c == 'o':
                 # state['goals'].append(pos)
                 goals.append(pos)
-                state.append(expr('Goal(' + str(pos) + ')'))
+                state.append(expr('Goal(I'+ str(i) + ', J' + str(j) + ')'))
 
             elif c == '#':
                 # state['walls'].append(pos)
-                state.append(expr('Wall(' + str(pos) + ')'))
+                state.append(expr('Wall(I'+ str(i) + ', J' + str(j) + ')'))
 
     print("state: " + str(state))
 
     for i in range(boxCount):
         g = goals[i]
-        goal = goal.join('Box('+ str(g) + ')')
+        goal = goal.join('Box(I'+ str(i) + ', J' + str(j) + ')')
 
         if i != (boxCount - 1):
             goal = goal.join(' & ')
